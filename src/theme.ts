@@ -1,3 +1,3 @@
 export default {
-  prmaryColor: "#4f9DDE",
+  primaryColor: "#4f9DDE",
 };
