@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src"), // 将 @ 指向 src 目录
+      "@": resolve(__dirname, "./src"), // 将 @ 指向 src
+      "@components": resolve(__dirname, "./src/components"), // 将 @components 指向 src/components"
     },
   },
 });
