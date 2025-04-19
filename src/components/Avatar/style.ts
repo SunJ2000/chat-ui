@@ -1,35 +1,47 @@
 import styled, { css } from "styled-components";
 
-const circleMinxFunc = (color: any) => css`
+const circleMinxFunc = (color: string, size: number) => css`
   content: "";
   display: block;
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: ${size}px;
+  height: ${size}px;
   border-radius: 50%;
   background-color: ${color};
 `;
 
-const StyledAvatar = styled.div`
+interface StyledAvatarProps {
+  size: number;
+}
+
+const StyledAvatar = styled.div<StyledAvatarProps>`
   position: relative;
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size}px`};
 `;
 
-const StatusIcon = styled.div`
+interface StatusIconProps {
+  size: number;
+  status: "online" | "offline";
+}
+
+const StatusIcon = styled.div<StatusIconProps>`
   position: absolute;
   left: 2px;
   top: 4px;
   &::before {
-    ${circleMinxFunc("white")}
+    ${({ size }) => circleMinxFunc("white", size)}
     transform: scale(2);
   }
   &::after {
-    ${({ theme }) => circleMinxFunc(theme.green)}
+    ${({ theme, size, status }) =>
+      circleMinxFunc(status === "online" ? theme.green : theme.gray, size)}
   }
 `;
 
 const AvatarClip = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   overflow: hidden;
 `;
